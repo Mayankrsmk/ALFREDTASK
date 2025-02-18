@@ -3,29 +3,29 @@ const mongoose = require('mongoose');
 const flashcardSchema = new mongoose.Schema({
   question: {
     type: String,
-    required: true,
+    required: true
   },
   answer: {
     type: String,
-    required: true,
+    required: true
   },
-  box: {
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  level: {
     type: Number,
-    default: 1,
-    min: 1,
-    max: 5
+    default: 0
   },
   nextReview: {
     type: Date,
     default: Date.now
   },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: false // Make it required if you implement user authentication
+  reviewCount: {
+    type: Number,
+    default: 0
   }
-}, {
-  timestamps: true
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Flashcard', flashcardSchema);

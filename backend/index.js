@@ -4,6 +4,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const flashcardRoutes = require('./routes/flashcard.routes');
+const authRoutes = require('./routes/auth.routes');
 
 const app = express();
 
@@ -18,6 +19,7 @@ mongoose.connect(process.env.MONGODB_URI)
 
 // Routes
 app.use('/api/flashcards', flashcardRoutes);
+app.use('/api/auth', authRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
